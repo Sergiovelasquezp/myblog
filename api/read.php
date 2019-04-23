@@ -16,8 +16,8 @@ $num = $result->rowCount();
 
 if ($num > 0) {
     $post_arr = [];
-    $post_arr['data']= [];
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+    $post_arr['data'] = [];
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
         $post_item = [
             'id' => $id,
@@ -29,7 +29,6 @@ if ($num > 0) {
         ];
 
         array_push($post_arr['data'], $post_item);
-
     }
 
     echo json_encode($post_arr);
