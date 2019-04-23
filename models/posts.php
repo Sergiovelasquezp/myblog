@@ -153,4 +153,28 @@ class Post
 
         return false;
     }
+
+    //delete post
+    public function deletePost()
+    {
+        //costruct query
+        $query = 'DELETE FROM ' . $this->table . '
+                    WHERE
+                        id = :id';
+        //prepare statement
+        $stmt = $this->conn->prepare($query);
+        //clean data
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        //bind params to array
+        $stmt->bindParam(':id', $this->id);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        printf("Error en borrado de registro: %s.\n", $stmt->error);
+
+        return false;
+    }
 }
